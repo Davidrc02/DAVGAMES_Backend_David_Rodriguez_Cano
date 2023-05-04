@@ -1,0 +1,28 @@
+#cabecera{
+   color: white;
+   background-color: royalblue;
+   width: 100%;
+   height: 40px;
+   display:flex;
+   align-items: center;
+   justify-content: center;
+}
+
+thead{
+	background-color: gray;
+}
+
+#ciclos{
+	width:100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.ciclos{
+	width:100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
