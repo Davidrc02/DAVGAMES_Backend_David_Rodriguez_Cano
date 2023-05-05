@@ -70,6 +70,7 @@ public class AuthControlador {
 		usuario.setUsername(registroDTO.getUsername());
 		usuario.setEmail(registroDTO.getEmail());
 		usuario.setComunidadAutonoma(registroDTO.getComunidadAutonoma());
+		usuario.setFechaNac(registroDTO.getFechaNac());
 		usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
 		
 		Rol roles= rolRepositorio.findByNombre("ROLE_USER").get();

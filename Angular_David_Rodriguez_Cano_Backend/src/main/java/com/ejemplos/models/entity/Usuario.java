@@ -1,5 +1,6 @@
 package com.ejemplos.models.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -40,6 +43,10 @@ public class Usuario {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="fecha_nac")
+	@Temporal(TemporalType.DATE)
+	private Date fechaNac;
 	
 	@Column(name="comunidad_autonoma")
 	private String comunidadAutonoma;
@@ -116,8 +123,14 @@ public class Usuario {
 	public void setFacturas(Set<Factura> facturas) {
 		this.facturas = facturas;
 	}
-	
-	
+
+	public Date getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
+	}
 
 	public String getComunidadAutonoma() {
 		return comunidadAutonoma;
@@ -128,7 +141,7 @@ public class Usuario {
 	}
 
 	public Usuario(long id, String nombre, String apellidos, String username, String email, String password,
-			Set<Rol> roles, Set<Factura> facturas, String comunidadAutonoma) {
+			Set<Rol> roles, Set<Factura> facturas, String comunidadAutonoma, Date fechaNac) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -138,6 +151,7 @@ public class Usuario {
 		this.roles = roles;
 		this.facturas = facturas;
 		this.comunidadAutonoma = comunidadAutonoma;
+		this.fechaNac=fechaNac;
 	}
 
 	public Usuario() {
