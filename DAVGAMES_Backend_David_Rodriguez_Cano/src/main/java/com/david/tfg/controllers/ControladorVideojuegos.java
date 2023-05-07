@@ -13,7 +13,6 @@ import com.david.tfg.models.service.IVideojuegoService;
 
 @RestController
 @RequestMapping("/v0/davgames/api/")
-@CrossOrigin(origins = {"**", "http://localhost:4200"})
 public class ControladorVideojuegos {
 	
 	@Autowired
