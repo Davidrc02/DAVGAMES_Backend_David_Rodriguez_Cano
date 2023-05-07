@@ -28,6 +28,10 @@ public class Pedido {
 	})
 	private Videojuego videojuego;
 
+	@ManyToOne
+	@JoinColumn(name = "factura_id", insertable=false, updatable=false)
+	private Factura factura;
+	
 	public long getId() {
 		return id;
 	}

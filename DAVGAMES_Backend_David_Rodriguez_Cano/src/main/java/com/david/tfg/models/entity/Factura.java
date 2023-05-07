@@ -29,7 +29,7 @@ public class Factura {
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private Usuario usuario;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "factura")
 	private Set<Pedido> pedidos = new HashSet<>();
 
 	public long getId() {
