@@ -1,4 +1,4 @@
-package com.david.tfg.models.service;
+package com.david.tfg.models.service.implementations;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.david.tfg.excepciones.ResourceNotFoundException;
 import com.david.tfg.models.entity.Videojuego;
 import com.david.tfg.models.entity.VideojuegoPK;
 import com.david.tfg.models.repositorios.VideojuegoRepostory;
+import com.david.tfg.models.service.IVideojuegoService;
 
 @Service
 public class VideojuegoServiceImpl implements IVideojuegoService{

@@ -5,25 +5,15 @@ import java.util.Date;
 public class VideojuegoDTOEntrada {
 	
 	private String nombreConsola;
-
 	private int clasificacionEdad;
-
 	private String empresa;
-
 	private Date fechaLanzamiento;
-
 	private String franquicia;
-
 	private String nombre;
-
 	private int numJugadores;
-	
 	private int stock;
-
 	private String genero;
-
 	private String url;
-
 	private Double precio;
 
 	@Override

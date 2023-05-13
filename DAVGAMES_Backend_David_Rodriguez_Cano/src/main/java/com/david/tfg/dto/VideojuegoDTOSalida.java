@@ -7,30 +7,17 @@ import com.david.tfg.models.entity.Pedido;
 
 public class VideojuegoDTOSalida {
 	private long idVideojuego;
-	
 	private String nombreConsola;
-
 	private int clasificacionEdad;
-
 	private String empresa;
-
 	private Date fechaLanzamiento;
-
 	private String franquicia;
-
 	private String nombre;
-
 	private int numJugadores;
-	
 	private int stock;
-
 	private String genero;
-
 	private String url;
-
 	private Double precio;
-
-	private Set<Pedido> pedidos;
 
 	@Override
 	public String toString() {
@@ -38,12 +25,12 @@ public class VideojuegoDTOSalida {
 				+ ", clasificacionEdad=" + clasificacionEdad + ", empresa=" + empresa + ", fechaLanzamiento="
 				+ fechaLanzamiento + ", franquicia=" + franquicia + ", nombre=" + nombre + ", numJugadores="
 				+ numJugadores + ", stock=" + stock + ", genero=" + genero + ", url=" + url + ", precio=" + precio
-				+ ", pedidos=" + pedidos + "]";
+				+ "]";
 	}
 
 	public VideojuegoDTOSalida(long idVideojuego, String nombreConsola, int clasificacionEdad, String empresa,
 			Date fechaLanzamiento, String franquicia, String nombre, int numJugadores, int stock, String genero,
-			String url, Double precio, Set<Pedido> pedidos) {
+			String url, Double precio) {
 		this.idVideojuego = idVideojuego;
 		this.nombreConsola = nombreConsola;
 		this.clasificacionEdad = clasificacionEdad;
@@ -56,7 +43,6 @@ public class VideojuegoDTOSalida {
 		this.genero = genero;
 		this.url = url;
 		this.precio = precio;
-		this.pedidos = pedidos;
 	}
 
 	public VideojuegoDTOSalida() {
@@ -157,14 +143,5 @@ public class VideojuegoDTOSalida {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-
-	public Set<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-	
 	
 }
