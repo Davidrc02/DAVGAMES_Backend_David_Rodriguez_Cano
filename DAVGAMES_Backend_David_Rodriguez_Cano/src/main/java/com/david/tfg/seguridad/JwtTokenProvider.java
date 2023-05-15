@@ -44,17 +44,23 @@ public class JwtTokenProvider {
 	
 	public boolean validarToken(String token) {
 		try {
+			System.out.println(token);
 			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
 			return true;
 		}catch(SignatureException e) {
+			System.out.println(e);
 			throw new ProyectoJWTAppException(HttpStatus.BAD_REQUEST, "Firma JWT no valida");
 		}catch(MalformedJwtException e) {
+			System.out.println(e);
 			throw new ProyectoJWTAppException(HttpStatus.BAD_REQUEST, "Token JWT no valida");
 		}catch(ExpiredJwtException e) {
+			System.out.println(e);
 			throw new ProyectoJWTAppException(HttpStatus.BAD_REQUEST, "Token JWT caducado");
 		}catch(UnsupportedJwtException e) {
+			System.out.println(e);
 			throw new ProyectoJWTAppException(HttpStatus.BAD_REQUEST, "Token JWT caducado");
 		}catch(IllegalArgumentException e) {
+			System.out.println(e);
 			throw new ProyectoJWTAppException(HttpStatus.BAD_REQUEST, "La cadena claims JWT caducado");
 		}
 	}

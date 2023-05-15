@@ -43,9 +43,8 @@ public class WebSecurityConfig {
 		return http.cors().and().csrf().disable()
 				.exceptionHandling().authenticationEntryPoint(jwtAutheticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/v0/davgames/api/admin/**").hasRole("ADMIN")
 				.antMatchers("/v0/davgames/auth/**").permitAll()
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				.and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).build();
 
 //		return http.csrf().disable()

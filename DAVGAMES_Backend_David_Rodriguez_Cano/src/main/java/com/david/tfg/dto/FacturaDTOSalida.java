@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 public class FacturaDTOSalida {
-private Date fechaHora;
 	
+	private Date fechaHora;
 	private long id;
-    private UsuarioDTOSalida usuario;
-    
     private List<PedidoDTOSalida> pedidos;
 
 	public Date getFechaHora() {
@@ -19,13 +17,6 @@ private Date fechaHora;
 		this.fechaHora = fechaHora;
 	}
 
-	public UsuarioDTOSalida getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(UsuarioDTOSalida usuario) {
-		this.usuario = usuario;
-	}
 
 	public List<PedidoDTOSalida> getPedidos() {
 		return pedidos;
@@ -35,10 +26,9 @@ private Date fechaHora;
 		this.pedidos = pedidos;
 	}
 
-	public FacturaDTOSalida(long id, Date fechaHora, UsuarioDTOSalida usuario, List<PedidoDTOSalida> pedidos) {
+	public FacturaDTOSalida(long id, Date fechaHora, List<PedidoDTOSalida> pedidos) {
 		this.id=id;
 		this.fechaHora = fechaHora;
-		this.usuario = usuario;
 		this.pedidos = pedidos;
 	}
 
