@@ -3,6 +3,7 @@ package com.david.tfg.configuracion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,25 +41,26 @@ public class WebSecurityConfig {
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
-		return http.cors().and().csrf().disable()
-				.exceptionHandling().authenticationEntryPoint(jwtAutheticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/v0/davgames/auth/**").permitAll()
-				.anyRequest().permitAll()
-				.and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).build();
-
-//		return http.csrf().disable()
-//				.exceptionHandling()
-//				.authenticationEntryPoint(jwtAutheticationEntryPoint)
-//				.and()
-//				.sessionManagement()
-//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//				.and()
-//				.authorizeRequests()
+//		return http.cors().and().csrf().disable()
+//				.exceptionHandling().authenticationEntryPoint(jwtAutheticationEntryPoint).and().sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+//				.antMatchers("/v0/davgames/auth/**").permitAll()
 //				.anyRequest().permitAll()
-//				.and()
-//				.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-//				.build();
+//				.and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).build();
+
+		return http.cors().and().csrf().disable()
+				.exceptionHandling()
+				.authenticationEntryPoint(jwtAutheticationEntryPoint)
+				.and()
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.authorizeRequests()
+				.antMatchers("/v0/davgames/auth/**").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+				.build();
 	}
 
 	@EnableWebMvc
