@@ -57,6 +57,7 @@ public class WebSecurityConfig {
 				.and()
 				.authorizeRequests()
 				.antMatchers("/v0/davgames/auth/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/v0/davgames/api/videojuegos").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
