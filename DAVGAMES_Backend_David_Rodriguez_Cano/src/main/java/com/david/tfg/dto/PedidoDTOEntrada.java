@@ -3,7 +3,7 @@ package com.david.tfg.dto;
 public class PedidoDTOEntrada {
 
 	private int cantidad;
-	private VideojuegoDTOSalida videojuego;
+	private VideojuegoDTO videojuego;
 	
 	public int getCantidad() {
 		return cantidad;
@@ -11,14 +11,14 @@ public class PedidoDTOEntrada {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public VideojuegoDTOSalida getVideojuego() {
+	public VideojuegoDTO getVideojuego() {
 		return videojuego;
 	}
-	public void setVideojuego(VideojuegoDTOSalida videojuego) {
+	public void setVideojuego(VideojuegoDTO videojuego) {
 		this.videojuego = videojuego;
 	}
 	
-	public PedidoDTOEntrada(int cantidad, VideojuegoDTOSalida videojuego) {
+	public PedidoDTOEntrada(int cantidad, VideojuegoDTO videojuego) {
 		this.cantidad = cantidad;
 		this.videojuego = videojuego;
 	}

@@ -10,21 +10,13 @@ import javax.persistence.GenerationType;
 
 @Embeddable
 public class VideojuegoPK implements Serializable{
-	
-	@Column(name = "id_videojuego")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idVideojuego;
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "nombre_videojuego")
+	private String nombreVideojuego;
 	
 	@Column(name="nombre_consola")
 	private String nombreConsola;
-
-	public long getIdVideojuego() {
-		return idVideojuego;
-	}
-
-	public void setIdVideojuego(long idVideojuego) {
-		this.idVideojuego = idVideojuego;
-	}
 
 	public String getNombreConsola() {
 		return nombreConsola;
@@ -34,17 +26,30 @@ public class VideojuegoPK implements Serializable{
 		this.nombreConsola = nombreConsola;
 	}
 
-	public VideojuegoPK(long idVideojuego, String nombreConsola) {
-		this.idVideojuego = idVideojuego;
+	public String getNombreVideojuego() {
+		return nombreVideojuego;
+	}
+
+	public void setNombreVideojuego(String nombreVideojuego) {
+		this.nombreVideojuego = nombreVideojuego;
+	}
+
+	public VideojuegoPK(String nombreVideojuego, String nombreConsola) {
 		this.nombreConsola = nombreConsola;
+		this.nombreVideojuego=nombreVideojuego;
 	}
 
 	public VideojuegoPK() {
 	}
 
 	@Override
+	public String toString() {
+		return "VideojuegoPK [nombreVideojuego=" + nombreVideojuego + ", nombreConsola=" + nombreConsola + "]";
+	}
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(idVideojuego, nombreConsola);
+		return Objects.hash(nombreVideojuego, nombreConsola);
 	}
 
 	@Override
@@ -56,7 +61,9 @@ public class VideojuegoPK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		VideojuegoPK other = (VideojuegoPK) obj;
-		return idVideojuego == other.idVideojuego && Objects.equals(nombreConsola, other.nombreConsola);
+		return Objects.equals(nombreVideojuego, other.nombreVideojuego) && Objects.equals(nombreConsola, other.nombreConsola);
 	}
+
+	
 	
 }

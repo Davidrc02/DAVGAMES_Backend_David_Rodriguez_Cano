@@ -2,17 +2,19 @@ package com.david.tfg.models.service;
 
 import java.util.List;
 
-import com.david.tfg.dto.VideojuegoDTOEntrada;
-import com.david.tfg.dto.VideojuegoDTOSalida;
+import com.david.tfg.dto.VideojuegoDTO;
+import com.david.tfg.models.entity.VideojuegoPK;
 
 public interface IVideojuegoService {
-	public List<VideojuegoDTOSalida> obtenerVideojuegos();
+	public List<VideojuegoDTO> obtenerVideojuegos();
 	
-	public void insertarVideojuego(VideojuegoDTOEntrada videojuego);
+	public void insertarVideojuego(VideojuegoDTO videojuego);
 	
-	public VideojuegoDTOSalida buscarVideojuego(long id, String consola);
+	public VideojuegoDTO obtenerVideojuego(VideojuegoPK idVideojuego);
 	
-	public void borrarVideojuego(long id, String consola);
+	public void eliminarVideojuego(VideojuegoPK idVideojuego);
+
+	public void actualizarVideojuego(VideojuegoPK videojuegoPK, VideojuegoDTO videojuegoDTO);
 	
 	
 }

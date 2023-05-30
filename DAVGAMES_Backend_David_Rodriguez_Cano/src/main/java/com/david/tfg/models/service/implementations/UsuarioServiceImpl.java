@@ -58,4 +58,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		}		
 	}
 
+	@Override
+	public void eliminarUsuario(long id) {
+		Usuario u = usuarioRepositorio.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
+		usuarioRepositorio.delete(u);
+	}
+
 }

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.david.tfg.dto.RegistroDTO;
 import com.david.tfg.dto.UsuarioDTOSalida;
-import com.david.tfg.dto.VideojuegoDTOEntrada;
-import com.david.tfg.dto.VideojuegoDTOSalida;
+import com.david.tfg.dto.VideojuegoDTO;
 import com.david.tfg.models.entity.Usuario;
 import com.david.tfg.models.entity.Videojuego;
+import com.david.tfg.models.entity.VideojuegoPK;
 
 @Component
 public class DTOConverter {
@@ -33,13 +33,35 @@ public class DTOConverter {
 		return user;
 	}
 	
-	public VideojuegoDTOSalida convertirADTO(Videojuego videojuego) {
-		VideojuegoDTOSalida videojuegoDTO = modelMapper().map(videojuego, VideojuegoDTOSalida.class);
+	public VideojuegoDTO convertirADTO(Videojuego videojuego) {
+		VideojuegoDTO videojuegoDTO = new VideojuegoDTO();
+		videojuegoDTO.setNombreVideojuego(videojuego.getVideojuegoPK().getNombreVideojuego());
+		videojuegoDTO.setNombreConsola(videojuego.getVideojuegoPK().getNombreConsola());
+		videojuegoDTO.setClasificacionEdad(videojuego.getClasificacionEdad());
+		videojuegoDTO.setEmpresa(videojuego.getEmpresa());
+		videojuegoDTO.setFechaLanzamiento(videojuego.getFechaLanzamiento());
+		videojuegoDTO.setFranquicia(videojuego.getFranquicia());
+		videojuegoDTO.setGenero(videojuego.getGenero());
+		videojuegoDTO.setNumJugadores(videojuego.getNumJugadores());
+		videojuegoDTO.setPrecio(videojuego.getPrecio());
+		videojuegoDTO.setStock(videojuego.getStock());
+		videojuegoDTO.setUrl(videojuego.getUrl());
 		return videojuegoDTO;
 	}
 	
-	public Videojuego convertirAEntidad(VideojuegoDTOEntrada videojuegoDTO) {
-		Videojuego videojuego = modelMapper().map(videojuegoDTO, Videojuego.class);
+	public Videojuego convertirAEntidad(VideojuegoDTO videojuegoDTO) {
+		Videojuego videojuego = new Videojuego();
+		videojuego.setVideojuegoPK(new VideojuegoPK(videojuegoDTO.getNombreVideojuego(), videojuegoDTO.getNombreConsola()));
+		videojuego.setClasificacionEdad(videojuegoDTO.getClasificacionEdad());
+		videojuego.setEmpresa(videojuegoDTO.getEmpresa());
+		videojuego.setFechaLanzamiento(videojuegoDTO.getFechaLanzamiento());
+		videojuego.setFranquicia(videojuegoDTO.getFranquicia());
+		videojuego.setGenero(videojuegoDTO.getGenero());
+		videojuego.setNumJugadores(videojuegoDTO.getNumJugadores());
+		videojuego.setPrecio(videojuegoDTO.getPrecio());
+		videojuego.setStock(videojuegoDTO.getStock());
+		videojuego.setUrl(videojuegoDTO.getUrl());
+		System.out.println(videojuego);
 		return videojuego;
 	}
 	

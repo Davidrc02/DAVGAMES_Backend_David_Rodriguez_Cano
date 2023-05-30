@@ -25,6 +25,7 @@ import com.david.tfg.models.repositorios.RolRepositorio;
 import com.david.tfg.models.repositorios.UsuarioRepositorio;
 import com.david.tfg.seguridad.JWTAuthResponseDTO;
 import com.david.tfg.seguridad.JwtTokenProvider;
+import com.david.tfg.utilities.ApiResponse;
 
 @RestController
 @RequestMapping("/v0/davgames/auth")
@@ -58,12 +59,13 @@ public class AuthControlador {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> registrarUsuario(@RequestBody RegistroDTO registroDTO){
+		System.out.println("entra");
 		if(usuarioRepositorio.existsByUsername(registroDTO.getUsername())) {
-			return new ResponseEntity<>("Ese nombre de usuario ya existe", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ApiResponse("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
 		}
 		
 		if(usuarioRepositorio.existsByEmail(registroDTO.getEmail())) {
-			return new ResponseEntity<>("Ese email de usuario ya existe", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ApiResponse("Ese email de usuario ya existe"), HttpStatus.BAD_REQUEST);
 		}
 		
 		Usuario usuario = new Usuario();
@@ -79,7 +81,7 @@ public class AuthControlador {
 		usuario.setRoles(Collections.singleton(roles));
 		
 		usuarioRepositorio.save(usuario);
-		return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.OK);
+		return new ResponseEntity<>(new ApiResponse("Usuario registrado correctamente"), HttpStatus.OK);
 	}
 	
 	@GetMapping("/verifyToken")

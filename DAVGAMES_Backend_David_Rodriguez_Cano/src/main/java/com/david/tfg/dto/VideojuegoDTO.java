@@ -1,15 +1,17 @@
 package com.david.tfg.dto;
 
 import java.util.Date;
+import java.util.Set;
 
-public class VideojuegoDTOEntrada {
-	
+import com.david.tfg.models.entity.Pedido;
+
+public class VideojuegoDTO{
+	private String nombreVideojuego;
 	private String nombreConsola;
 	private int clasificacionEdad;
 	private String empresa;
 	private Date fechaLanzamiento;
 	private String franquicia;
-	private String nombre;
 	private int numJugadores;
 	private int stock;
 	private String genero;
@@ -18,22 +20,22 @@ public class VideojuegoDTOEntrada {
 
 	@Override
 	public String toString() {
-		return "VideojuegoDTOSalida [nombreConsola=" + nombreConsola
+		return "VideojuegoDTOSalida [nombreVideojuego=" + nombreVideojuego + ", nombreConsola=" + nombreConsola
 				+ ", clasificacionEdad=" + clasificacionEdad + ", empresa=" + empresa + ", fechaLanzamiento="
-				+ fechaLanzamiento + ", franquicia=" + franquicia + ", nombre=" + nombre + ", numJugadores="
+				+ fechaLanzamiento + ", franquicia=" + franquicia + ", numJugadores="
 				+ numJugadores + ", stock=" + stock + ", genero=" + genero + ", url=" + url + ", precio=" + precio
 				+ "]";
 	}
 
-	public VideojuegoDTOEntrada(String nombreConsola, int clasificacionEdad, String empresa,
-			Date fechaLanzamiento, String franquicia, String nombre, int numJugadores, int stock, String genero,
+	public VideojuegoDTO(String nombreVideojuego, String nombreConsola, int clasificacionEdad, String empresa,
+			Date fechaLanzamiento, String franquicia, int numJugadores, int stock, String genero,
 			String url, Double precio) {
+		this.nombreVideojuego = nombreVideojuego;
 		this.nombreConsola = nombreConsola;
 		this.clasificacionEdad = clasificacionEdad;
 		this.empresa = empresa;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.franquicia = franquicia;
-		this.nombre = nombre;
 		this.numJugadores = numJugadores;
 		this.stock = stock;
 		this.genero = genero;
@@ -41,7 +43,15 @@ public class VideojuegoDTOEntrada {
 		this.precio = precio;
 	}
 
-	public VideojuegoDTOEntrada() {
+	public VideojuegoDTO() {
+	}
+
+	public String getNombreVideojuego() {
+		return nombreVideojuego;
+	}
+
+	public void setNombreVideojuego(String nombreVideojuego) {
+		this.nombreVideojuego = nombreVideojuego;
 	}
 
 	public String getNombreConsola() {
@@ -82,14 +92,6 @@ public class VideojuegoDTOEntrada {
 
 	public void setFranquicia(String franquicia) {
 		this.franquicia = franquicia;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public int getNumJugadores() {

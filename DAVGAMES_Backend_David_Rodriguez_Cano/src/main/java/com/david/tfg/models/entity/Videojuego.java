@@ -40,9 +40,6 @@ public class Videojuego implements Serializable {
 	@Column(name = "franquicia")
 	private String franquicia;
 
-	@Column(name = "nombre")
-	private String nombre;
-
 	@Column(name = "num_jugadores")
 	private int numJugadores;
 	
@@ -103,15 +100,7 @@ public class Videojuego implements Serializable {
 	public void setFranquicia(String franquicia) {
 		this.franquicia = franquicia;
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	
 	public int getNumJugadores() {
 		return numJugadores;
 	}
@@ -153,18 +142,27 @@ public class Videojuego implements Serializable {
 	}
 
 	public Videojuego(VideojuegoPK videojuegoPK, int clasificacionEdad, String empresa, Date fechaLanzamiento,
-			String franquicia, String nombre, int numJugadores, int stock, String genero, String url,
+			String franquicia, int numJugadores, int stock, String genero, String url,
 			Double precio) {
 		this.videojuegoPK = videojuegoPK;
 		this.clasificacionEdad = clasificacionEdad;
 		this.empresa = empresa;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.franquicia = franquicia;
-		this.nombre = nombre;
 		this.numJugadores = numJugadores;
 		this.stock = stock;
 		this.genero = genero;
 		this.url = url;
 		this.precio = precio;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Videojuego [videojuegoPK=" + videojuegoPK + ", clasificacionEdad=" + clasificacionEdad + ", empresa="
+				+ empresa + ", fechaLanzamiento=" + fechaLanzamiento + ", franquicia=" + franquicia + ", numJugadores="
+				+ numJugadores + ", stock=" + stock + ", genero=" + genero + ", url=" + url + ", precio=" + precio
+				+ ", pedidos=" + pedidos + "]";
+	}
+	
+	
 }

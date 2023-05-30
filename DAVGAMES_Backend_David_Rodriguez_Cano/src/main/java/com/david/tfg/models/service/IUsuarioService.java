@@ -14,4 +14,6 @@ public interface IUsuarioService {
 	public void crearUsuario(RegistroDTO registroDTO);
 
 	public void actualizarUsuario(long id, RegistroDTO registroDTO);
+
+	public void eliminarUsuario(long id);
 }

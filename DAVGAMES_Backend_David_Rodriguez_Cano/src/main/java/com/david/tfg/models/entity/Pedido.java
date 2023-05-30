@@ -23,7 +23,7 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumns({ 
-		@JoinColumn(name = "id_videojuego", insertable = false, updatable = false),
+		@JoinColumn(name = "nombre_videojuego", insertable = false, updatable = false),
 		@JoinColumn(name = "nombre_consola", insertable = false, updatable = false)
 	})
 	private Videojuego videojuego;

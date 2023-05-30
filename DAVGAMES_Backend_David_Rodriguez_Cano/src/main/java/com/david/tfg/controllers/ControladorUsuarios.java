@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,8 +44,13 @@ public class ControladorUsuarios {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<ApiResponse> actualizarUsuario(@PathVariable(value="id") long id, @RequestBody RegistroDTO registroDTO) {
-		System.out.println("Entra");
 		usuarioService.actualizarUsuario(id, registroDTO);
 		return new ResponseEntity<>(new ApiResponse("Usuario creado."), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<ApiResponse> eliminarUsuario(@PathVariable(value="id") long id) {
+		usuarioService.eliminarUsuario(id);
+		return new ResponseEntity<>(new ApiResponse("Usuario eliminado."), HttpStatus.OK);
 	}
 }

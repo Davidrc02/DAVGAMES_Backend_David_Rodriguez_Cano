@@ -51,7 +51,7 @@ public class Usuario {
 	@Column(name="comunidad_autonoma")
 	private String comunidadAutonoma;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_roles",
 	joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))

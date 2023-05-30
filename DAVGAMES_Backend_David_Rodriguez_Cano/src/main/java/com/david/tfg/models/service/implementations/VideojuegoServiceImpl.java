@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.david.tfg.dto.VideojuegoDTOEntrada;
-import com.david.tfg.dto.VideojuegoDTOSalida;
+import com.david.tfg.dto.VideojuegoDTO;
+import com.david.tfg.excepciones.ResourceNotFoundException;
+import com.david.tfg.models.entity.Videojuego;
+import com.david.tfg.models.entity.VideojuegoPK;
 import com.david.tfg.models.repositorios.VideojuegoRepostory;
 import com.david.tfg.models.service.IVideojuegoService;
 import com.david.tfg.utilities.DTOConverter;
@@ -21,26 +23,33 @@ public class VideojuegoServiceImpl implements IVideojuegoService{
 	private DTOConverter dtoConverter;
 
 	@Override
-	public List<VideojuegoDTOSalida> obtenerVideojuegos() {
+	public List<VideojuegoDTO> obtenerVideojuegos() {
 		return videojuegoRepository.findAll().stream().map(videojuego -> dtoConverter.convertirADTO(videojuego)).collect(Collectors.toList());
 	}
-
+	
 	@Override
-	public void insertarVideojuego(VideojuegoDTOEntrada videojuego) {
-		// TODO Auto-generated method stub
-		
+	public VideojuegoDTO obtenerVideojuego(VideojuegoPK idVideojuego) {
+		Videojuego v = videojuegoRepository.findById(idVideojuego).orElseThrow(() -> new ResourceNotFoundException("Videojuego"));
+		return dtoConverter.convertirADTO(v);
 	}
 
 	@Override
-	public VideojuegoDTOSalida buscarVideojuego(long id, String consola) {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertarVideojuego(VideojuegoDTO videojuego) {
+		Videojuego v = dtoConverter.convertirAEntidad(videojuego);
+		videojuegoRepository.save(v);
 	}
 
 	@Override
-	public void borrarVideojuego(long id, String consola) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarVideojuego(VideojuegoPK idVideojuego) {
+		videojuegoRepository.deleteById(idVideojuego);
+	}
+
+	@Override
+	public void actualizarVideojuego(VideojuegoPK videojuegoPK, VideojuegoDTO videojuegoDTO) {
+		videojuegoDTO.setNombreVideojuego(videojuegoPK.getNombreVideojuego());
+		videojuegoDTO.setNombreConsola(videojuegoPK.getNombreConsola());
+		Videojuego v = dtoConverter.convertirAEntidad(videojuegoDTO);
+		videojuegoRepository.save(v);
 	}
 	
 }
