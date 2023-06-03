@@ -15,6 +15,8 @@ public interface IVideojuegoService {
 	public void eliminarVideojuego(VideojuegoPK idVideojuego);
 
 	public void actualizarVideojuego(VideojuegoPK videojuegoPK, VideojuegoDTO videojuegoDTO);
+
+	public List<String> obtenerConsolasPorNombreVideojuego(String nombreVideojuego);
 	
 	
 }

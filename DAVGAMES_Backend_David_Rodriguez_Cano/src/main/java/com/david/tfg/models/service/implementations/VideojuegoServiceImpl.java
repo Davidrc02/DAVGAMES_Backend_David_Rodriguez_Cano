@@ -51,5 +51,10 @@ public class VideojuegoServiceImpl implements IVideojuegoService{
 		Videojuego v = dtoConverter.convertirAEntidad(videojuegoDTO);
 		videojuegoRepository.save(v);
 	}
+
+	@Override
+	public List<String> obtenerConsolasPorNombreVideojuego(String nombreVideojuego) {
+		return videojuegoRepository.obtenerConsolasPorNombreVideojuego(nombreVideojuego);
+	}
 	
 }

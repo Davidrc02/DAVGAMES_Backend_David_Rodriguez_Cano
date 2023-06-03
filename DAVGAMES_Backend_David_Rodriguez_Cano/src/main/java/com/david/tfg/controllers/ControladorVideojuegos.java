@@ -34,8 +34,13 @@ public class ControladorVideojuegos {
 	}
 	
 	@GetMapping("/{nombreVideojuego}/{nombreConsola}")
-	public ResponseEntity<VideojuegoDTO> obtenerUsuario(@PathVariable(value="nombreVideojuego") String nombreVideojuego, @PathVariable(value="nombreConsola") String nombreConsola) {
+	public ResponseEntity<VideojuegoDTO> obtenerVideojuego(@PathVariable(value="nombreVideojuego") String nombreVideojuego, @PathVariable(value="nombreConsola") String nombreConsola) {
 		return new ResponseEntity<>(videojuegoService.obtenerVideojuego(new VideojuegoPK(nombreVideojuego, nombreConsola)), HttpStatus.OK);
+	}
+	
+	@GetMapping("/obtenerConsolasPorNombreVideojuego/{nombreVideojuego}")
+	public ResponseEntity<List<String>> obtenerConsolasPorNombreVideojuego(@PathVariable(value="nombreVideojuego") String nombreVideojuego) {
+		return new ResponseEntity<>(videojuegoService.obtenerConsolasPorNombreVideojuego(nombreVideojuego), HttpStatus.OK);
 	}
 	
 	@PostMapping
