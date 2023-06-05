@@ -8,6 +8,7 @@ import com.david.tfg.models.entity.Pedido;
 public class VideojuegoDTO{
 	private String nombreVideojuego;
 	private String nombreConsola;
+	private String descripcion;
 	private int clasificacionEdad;
 	private String empresa;
 	private Date fechaLanzamiento;
@@ -24,12 +25,12 @@ public class VideojuegoDTO{
 				+ ", clasificacionEdad=" + clasificacionEdad + ", empresa=" + empresa + ", fechaLanzamiento="
 				+ fechaLanzamiento + ", franquicia=" + franquicia + ", numJugadores="
 				+ numJugadores + ", stock=" + stock + ", genero=" + genero + ", url=" + url + ", precio=" + precio
-				+ "]";
+				+ ", descripcion="+ descripcion+"]";
 	}
 
 	public VideojuegoDTO(String nombreVideojuego, String nombreConsola, int clasificacionEdad, String empresa,
 			Date fechaLanzamiento, String franquicia, int numJugadores, int stock, String genero,
-			String url, Double precio) {
+			String url, Double precio, String descripcion) {
 		this.nombreVideojuego = nombreVideojuego;
 		this.nombreConsola = nombreConsola;
 		this.clasificacionEdad = clasificacionEdad;
@@ -41,6 +42,7 @@ public class VideojuegoDTO{
 		this.genero = genero;
 		this.url = url;
 		this.precio = precio;
+		this.descripcion=descripcion;
 	}
 
 	public VideojuegoDTO() {
@@ -132,6 +134,14 @@ public class VideojuegoDTO{
 
 	public void setPrecio(Double precio) {
 		this.precio = precio;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 }
