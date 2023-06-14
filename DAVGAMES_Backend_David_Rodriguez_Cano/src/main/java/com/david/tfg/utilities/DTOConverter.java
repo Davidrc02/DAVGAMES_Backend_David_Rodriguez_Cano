@@ -6,19 +6,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.david.tfg.dto.FacturaDTO;
+import com.david.tfg.dto.FacturaDTOEntrada;
+import com.david.tfg.dto.FacturaDTOSalida;
+import com.david.tfg.dto.PedidoDTOSalida;
 import com.david.tfg.dto.RegistroDTO;
 import com.david.tfg.dto.UsuarioDTOSalida;
 import com.david.tfg.dto.VideojuegoDTO;
+import com.david.tfg.models.entity.Factura;
+import com.david.tfg.models.entity.Pedido;
 import com.david.tfg.models.entity.Usuario;
 import com.david.tfg.models.entity.Videojuego;
 import com.david.tfg.models.entity.VideojuegoPK;
 
 @Component
 public class DTOConverter {
-
+	
 	@Bean
 	public ModelMapper modelMapper() {
-		return new ModelMapper();
+		ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+        return modelMapper;
 	}
 	
 	public UsuarioDTOSalida convertirADTO(Usuario user) {
@@ -31,6 +39,38 @@ public class DTOConverter {
 		userDTOEntrada.setPassword(passwordEncoder.encode(userDTOEntrada.getPassword()));
 		Usuario user = modelMapper().map(userDTOEntrada, Usuario.class);
 		return user;
+	}
+	
+	public FacturaDTOSalida convertirADTO(Factura factura) {
+		FacturaDTOSalida facturaDTO = modelMapper().map(factura, FacturaDTOSalida.class);
+		return facturaDTO;
+	}
+	
+	public Factura convertirAEntidad(FacturaDTOEntrada facturaDTOEntrada) {
+		Factura factura = modelMapper().map(facturaDTOEntrada, Factura.class);
+		Usuario u = modelMapper().map(facturaDTOEntrada.getUsuario(), Usuario.class);
+		factura.setUsuario(u);
+		return factura;
+	}
+	
+	public FacturaDTO convertirADTOPredeterminada(Factura factura) {
+		FacturaDTO facturaDTO = modelMapper().map(factura, FacturaDTO.class);
+		return facturaDTO;
+	}
+	
+	public Factura convertirAEntidadPredeterminada(FacturaDTO facturaDTO) {
+		Factura factura = modelMapper().map(facturaDTO, Factura.class);
+		return factura;
+	}
+	
+	public Pedido convertirAEntidad(PedidoDTOSalida pedidoDTOSalida) {
+		System.out.println("******"+pedidoDTOSalida);
+		Pedido p = modelMapper().map(pedidoDTOSalida, Pedido.class);
+		Videojuego v = convertirAEntidad(pedidoDTOSalida.getVideojuego());
+		p.setVideojuego(v);
+		p.setFactura(convertirAEntidadPredeterminada(pedidoDTOSalida.getFactura()));
+		System.out.println(p);
+		return p;
 	}
 	
 	public VideojuegoDTO convertirADTO(Videojuego videojuego) {

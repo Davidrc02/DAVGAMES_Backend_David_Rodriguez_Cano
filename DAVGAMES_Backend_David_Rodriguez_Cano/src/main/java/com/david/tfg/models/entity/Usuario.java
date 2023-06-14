@@ -1,10 +1,11 @@
 package com.david.tfg.models.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Usuario {
 	@Column(name="username")
 	private String username;
 	
-	@Column(name="email")
+	@Column(name="email", unique = true, nullable=false)
 	private String email;
 	
 	@Column(name="password")
@@ -51,6 +52,9 @@ public class Usuario {
 	@Column(name="comunidad_autonoma")
 	private String comunidadAutonoma;
 	
+	@Column(name="saldo")
+	private Double saldo;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_roles",
 	joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
@@ -58,7 +62,7 @@ public class Usuario {
 	private Set<Rol> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "usuario")
-	private Set<Factura> facturas = new HashSet<>();
+	private List<Factura> facturas = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -116,11 +120,11 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	public Set<Factura> getFacturas() {
+	public List<Factura> getFacturas() {
 		return facturas;
 	}
 
-	public void setFacturas(Set<Factura> facturas) {
+	public void setFacturas(List<Factura> facturas) {
 		this.facturas = facturas;
 	}
 
@@ -139,9 +143,17 @@ public class Usuario {
 	public void setComunidadAutonoma(String comunidadAutonoma) {
 		this.comunidadAutonoma = comunidadAutonoma;
 	}
+	
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
 
 	public Usuario(long id, String nombre, String apellidos, String username, String email, String password,
-			Set<Rol> roles, Set<Factura> facturas, String comunidadAutonoma, Date fechaNac) {
+			Set<Rol> roles, List<Factura> facturas, String comunidadAutonoma, Date fechaNac, Double saldo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -152,9 +164,17 @@ public class Usuario {
 		this.facturas = facturas;
 		this.comunidadAutonoma = comunidadAutonoma;
 		this.fechaNac=fechaNac;
+		this.saldo=saldo;
 	}
 
 	public Usuario() {
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", username=" + username
+				+ ", email=" + email + ", password=" + password + ", fechaNac=" + fechaNac + ", comunidadAutonoma="
+				+ comunidadAutonoma + ", saldo=" + saldo + "]";
 	}
 	
 }

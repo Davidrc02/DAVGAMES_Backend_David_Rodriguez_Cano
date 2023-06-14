@@ -1,9 +1,6 @@
 package com.david.tfg.dto;
 
 import java.util.Date;
-import java.util.Set;
-
-import com.david.tfg.models.entity.Pedido;
 
 public class VideojuegoDTO{
 	private String nombreVideojuego;

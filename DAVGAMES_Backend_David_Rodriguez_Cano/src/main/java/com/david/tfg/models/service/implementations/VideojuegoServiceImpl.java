@@ -10,14 +10,14 @@ import com.david.tfg.dto.VideojuegoDTO;
 import com.david.tfg.excepciones.ResourceNotFoundException;
 import com.david.tfg.models.entity.Videojuego;
 import com.david.tfg.models.entity.VideojuegoPK;
-import com.david.tfg.models.repositorios.VideojuegoRepostory;
+import com.david.tfg.models.repositorios.VideojuegoRepositorio;
 import com.david.tfg.models.service.IVideojuegoService;
 import com.david.tfg.utilities.DTOConverter;
 
 @Service
 public class VideojuegoServiceImpl implements IVideojuegoService{
 	@Autowired
-	private VideojuegoRepostory videojuegoRepository;
+	private VideojuegoRepositorio videojuegoRepository;
 	
 	@Autowired
 	private DTOConverter dtoConverter;

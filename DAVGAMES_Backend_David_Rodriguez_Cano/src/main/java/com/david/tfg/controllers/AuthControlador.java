@@ -76,6 +76,7 @@ public class AuthControlador {
 		usuario.setComunidadAutonoma(registroDTO.getComunidadAutonoma());
 		usuario.setFechaNac(registroDTO.getFechaNac());
 		usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
+		usuario.setSaldo(1000000.0);
 		
 		Rol roles= rolRepositorio.findByNombre("ROLE_USER").get();
 		usuario.setRoles(Collections.singleton(roles));

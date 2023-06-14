@@ -1,7 +1,8 @@
 package com.david.tfg.models.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,11 +27,11 @@ public class Factura {
 	private Date fechaHora;
 	
 	@ManyToOne
-    @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 	
 	@OneToMany(mappedBy = "factura")
-	private Set<Pedido> pedidos = new HashSet<>();
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -56,15 +57,15 @@ public class Factura {
 		this.usuario = usuario;
 	}
 
-	public Set<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(Set<Pedido> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 
-	public Factura(long id, Date fechaHora, Usuario usuario, Set<Pedido> pedidos) {
+	public Factura(long id, Date fechaHora, Usuario usuario, List<Pedido> pedidos) {
 		this.id = id;
 		this.fechaHora = fechaHora;
 		this.usuario = usuario;
@@ -72,6 +73,11 @@ public class Factura {
 	}
 
 	public Factura() {
+	}
+
+	@Override
+	public String toString() {
+		return "Factura [id=" + id + ", fechaHora=" + fechaHora + ", usuario=" + usuario + "]";
 	}
 	
 	

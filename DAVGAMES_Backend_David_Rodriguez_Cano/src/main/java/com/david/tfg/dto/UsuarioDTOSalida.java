@@ -12,7 +12,8 @@ public class UsuarioDTOSalida {
 	private String username;
 	private String comunidadAutonoma;
 	private Date fechaNac;
-	private List<FacturaDTOSalida> facturas;
+	private List<FacturaDTO> facturas;
+	private Double saldo;
 	
 	public long getId() {
 		return id;
@@ -62,16 +63,16 @@ public class UsuarioDTOSalida {
 		this.comunidadAutonoma = comunidadAutonoma;
 	}
 
-	public List<FacturaDTOSalida> getFacturas() {
+	public List<FacturaDTO> getFacturas() {
 		return facturas;
 	}
 
-	public void setFacturas(List<FacturaDTOSalida> facturas) {
+	public void setFacturas(List<FacturaDTO> facturas) {
 		this.facturas = facturas;
 	}
 
 	public UsuarioDTOSalida(String nombre, String apellidos, String email, String username, 
-			String comunidadAutonoma, Date fechaNac, List<FacturaDTOSalida> facturas) {
+			String comunidadAutonoma, Date fechaNac, List<FacturaDTO> facturas, Double saldo) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -79,6 +80,7 @@ public class UsuarioDTOSalida {
 		this.fechaNac=fechaNac;
 		this.comunidadAutonoma = comunidadAutonoma;
 		this.facturas = facturas;
+		this.saldo=saldo;
 	}
 
 	public UsuarioDTOSalida() {
@@ -90,6 +92,14 @@ public class UsuarioDTOSalida {
 	
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac=fechaNac;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 	

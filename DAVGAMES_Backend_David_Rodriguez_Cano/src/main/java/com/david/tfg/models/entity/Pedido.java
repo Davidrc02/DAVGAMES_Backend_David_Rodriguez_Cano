@@ -23,13 +23,13 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumns({ 
-		@JoinColumn(name = "nombre_videojuego", insertable = false, updatable = false),
-		@JoinColumn(name = "nombre_consola", insertable = false, updatable = false)
+		@JoinColumn(name = "nombre_videojuego"),
+		@JoinColumn(name = "nombre_consola")
 	})
 	private Videojuego videojuego;
 
 	@ManyToOne
-	@JoinColumn(name = "factura_id", insertable=false, updatable=false)
+	@JoinColumn(name = "factura_id")
 	private Factura factura;
 	
 	public long getId() {
@@ -56,13 +56,30 @@ public class Pedido {
 		this.videojuego = videojuego;
 	}
 
-	public Pedido(long id, int cantidad, Videojuego videojuego) {
+	public Factura getFactura() {
+		return factura;
+	}
+
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
+
+	public Pedido(long id, int cantidad, Videojuego videojuego, Factura factura) {
 		this.id = id;
 		this.cantidad = cantidad;
 		this.videojuego = videojuego;
+		this.factura = factura;
 	}
 
 	public Pedido() {
 	}
 
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", cantidad=" + cantidad + ", videojuego=" + videojuego + ", factura=" + factura
+				+ "]";
+	}
+
+	
+	
 }

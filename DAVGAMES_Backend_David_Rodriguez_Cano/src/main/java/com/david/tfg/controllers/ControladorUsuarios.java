@@ -31,9 +31,9 @@ public class ControladorUsuarios {
 		return new ResponseEntity<>(usuarioService.obtenerUsuarios(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<UsuarioDTOSalida> obtenerUsuario(@PathVariable(value="id") long id) {
-		return new ResponseEntity<>(usuarioService.obtenerUsuario(id), HttpStatus.OK);
+	@GetMapping("/{username}")
+	public ResponseEntity<UsuarioDTOSalida> obtenerUsuario(@PathVariable(value="username") String username) {
+		return new ResponseEntity<>(usuarioService.obtenerUsuario(username), HttpStatus.OK);
 	}
 	
 	@PostMapping

@@ -14,6 +14,7 @@ public class RegistroDTO {
 	private String comunidadAutonoma;
 	private Date fechaNac;
 	private List<FacturaDTOSalida> facturas;
+	private Double saldo;
 
 	public String getNombre() {
 		return nombre;
@@ -64,7 +65,7 @@ public class RegistroDTO {
 	}
 
 	public RegistroDTO(String nombre, String apellidos, String email, String username, String password,
-			String comunidadAutonoma, Date fechaNac, List<FacturaDTOSalida> facturas) {
+			String comunidadAutonoma, Date fechaNac, List<FacturaDTOSalida> facturas, Double saldo) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -73,6 +74,7 @@ public class RegistroDTO {
 		this.fechaNac=fechaNac;
 		this.comunidadAutonoma = comunidadAutonoma;
 		this.facturas=facturas;
+		this.saldo=saldo;
 	}
 
 	public RegistroDTO() {
@@ -94,5 +96,14 @@ public class RegistroDTO {
 		this.facturas = facturas;
 	}
 
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	
 	
 }

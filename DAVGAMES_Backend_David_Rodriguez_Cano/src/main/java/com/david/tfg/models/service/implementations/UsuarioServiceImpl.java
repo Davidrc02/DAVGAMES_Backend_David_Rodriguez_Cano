@@ -29,8 +29,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public UsuarioDTOSalida obtenerUsuario(long id) {
-		Usuario usuario =usuarioRepositorio.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
+	public UsuarioDTOSalida obtenerUsuario(String username) {
+		Usuario usuario =usuarioRepositorio.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
 		return dtoConverter.convertirADTO(usuario);
 	}
 

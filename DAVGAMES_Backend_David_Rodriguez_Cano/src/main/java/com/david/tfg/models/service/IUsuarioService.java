@@ -9,7 +9,7 @@ public interface IUsuarioService {
 	
 	public List<UsuarioDTOSalida> obtenerUsuarios();
 
-	public UsuarioDTOSalida obtenerUsuario(long id);
+	public UsuarioDTOSalida obtenerUsuario(String username);
 
 	public void crearUsuario(RegistroDTO registroDTO);
 
