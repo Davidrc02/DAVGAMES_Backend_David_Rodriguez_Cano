@@ -60,16 +60,22 @@ public class DTOConverter {
 	
 	public Factura convertirAEntidadPredeterminada(FacturaDTO facturaDTO) {
 		Factura factura = modelMapper().map(facturaDTO, Factura.class);
+		System.out.println("*****convertirAEntidadPredeterminada*****");
+		System.out.println(factura);
+		System.out.println(factura.getPedidos());
+		System.out.println("******");
 		return factura;
 	}
 	
 	public Pedido convertirAEntidad(PedidoDTOSalida pedidoDTOSalida) {
-		System.out.println("******"+pedidoDTOSalida);
+		System.out.println("*******convertirAEntidad********");
+		System.out.println(pedidoDTOSalida);
 		Pedido p = modelMapper().map(pedidoDTOSalida, Pedido.class);
 		Videojuego v = convertirAEntidad(pedidoDTOSalida.getVideojuego());
 		p.setVideojuego(v);
 		p.setFactura(convertirAEntidadPredeterminada(pedidoDTOSalida.getFactura()));
 		System.out.println(p);
+		System.out.println("********");
 		return p;
 	}
 	
