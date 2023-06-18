@@ -1,10 +1,12 @@
 package com.david.tfg.models.service.implementations;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.david.tfg.dto.FacturaDTO;
 import com.david.tfg.dto.FacturaDTOEntrada;
 import com.david.tfg.dto.PedidoDTOSalida;
 import com.david.tfg.excepciones.ResourceNotFoundException;
@@ -38,6 +40,17 @@ public class FacturaServiceImpl implements IFacturaService{
 	private DTOConverter dtoConverter;
 	
 	@Override
+	public List<FacturaDTO> obtenerFacturasPorUsuario(Usuario usuario) {
+		return facturaRepositorio.obtenerFacturasPorUsuario(usuario).stream().map(factura -> dtoConverter.convertirADTOPredeterminada(factura)).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<PedidoDTOSalida> obtenerPedidosPorIdFactura(long id) {
+		Factura f = facturaRepositorio.findById(id).orElseThrow(() -> new ResourceNotFoundException("Factura"));
+		return f.getPedidos().stream().map(pedido -> dtoConverter.convertirADTO(pedido)).collect(Collectors.toList());
+	}
+	
+	@Override
 	public void realizarFactura(FacturaDTOEntrada facturaDTO) {
 		if(usuarioRepositorio.existsByUsername(facturaDTO.getUsuario().getUsername()) && facturaDTO.getPedidos().size()!=0) {
 			actualizarSaldoUsuario(facturaDTO);
@@ -69,5 +82,7 @@ public class FacturaServiceImpl implements IFacturaService{
 	            .mapToDouble(pedido -> pedido.getCantidad() * pedido.getVideojuego().getPrecio()*10)
 	            .sum();
 	}
+
+	
 
 }

@@ -12,15 +12,20 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.david.tfg.dto.FacturaDTO;
 import com.david.tfg.dto.FacturaDTOEntrada;
+import com.david.tfg.dto.PedidoDTOSalida;
 import com.david.tfg.excepciones.ResourceNotFoundException;
 import com.david.tfg.models.entity.Factura;
 import com.david.tfg.models.entity.Pedido;
+import com.david.tfg.models.entity.Usuario;
 import com.david.tfg.models.entity.Videojuego;
 import com.david.tfg.models.repositorios.FacturaRepositorio;
 import com.david.tfg.models.repositorios.PedidoRepositorio;
@@ -29,7 +34,7 @@ import com.david.tfg.models.service.IFacturaService;
 import com.david.tfg.utilities.ApiResponse;
 
 @RestController
-@RequestMapping("/v0/davgames/api/")
+@RequestMapping("/v0/davgames/api/facturas")
 public class ControladorFacturas {
 
 	@Autowired
@@ -47,7 +52,21 @@ public class ControladorFacturas {
 	@Autowired
 	private PedidoRepositorio pedidoRepositorio;
 	
-	@PutMapping("realizarFactura")
+	@GetMapping("/{email}")
+	public ResponseEntity<List<FacturaDTO>> obtenerFacturas(@PathVariable(value="email") String email){
+		Usuario u = usuarioRepositorio.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Factura"));
+		if(u!=null) {
+			return new ResponseEntity<>(facturaService.obtenerFacturasPorUsuario(u), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+	}
+	
+	@GetMapping("/obtenerPedidos/{id}")
+	public ResponseEntity<List<PedidoDTOSalida>> obtenerPedidos(@PathVariable(value="id") long id){
+		return new ResponseEntity<>(facturaService.obtenerPedidosPorIdFactura(id), HttpStatus.OK);
+	}
+	
+	@PutMapping("/realizarFactura")
 	public ResponseEntity<ApiResponse> realizarFactura(@RequestBody FacturaDTOEntrada facturaDTO) {
 		if(usuarioRepositorio.existsByUsername(facturaDTO.getUsuario().getUsername()) && facturaDTO.getPedidos().size()!=0) {
 			facturaService.realizarFactura(facturaDTO);
